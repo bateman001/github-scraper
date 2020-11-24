@@ -8,7 +8,7 @@
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
     "migrate": "npx knex migrate:latest",
-    "migrateback": "npm knex migrate:rollback",
+    "migrateback": "npx knex migrate:rollback",
     "scrape": "node src/scrapeGitHub.js"
   },
   "keywords": [],
@@ -21,6 +21,7 @@
     "helmet": "^3.23.3",
     "knex": "^0.21.12",
     "morgan": "^1.10.0",
+    "node-fetch": "^2.6.1",
     "nodemon": "^2.0.6",
     "sqlite3": "^5.0.0",
     "xss": "^1.0.8"
