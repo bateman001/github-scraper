@@ -16,8 +16,17 @@ const RepoService = {
     getRepoByName(name){
         return db
             .from('repos')
-            .select('repos.name', 'repos.repo_url', 'repos.public_access', 'users.username', 'users.user_url')
-            .join('users', {'repos.user_id': 'users.id'})
+            .select('repos.name',
+                'repos.fullname',
+                'repos.description', 
+                'repos.fork',
+                'repos.language',
+                'repos.repo_url', 
+                'repos.public_access', 
+                'users.username', 
+                'users.user_url',
+                )
+            .join('users', {'repos.user_id': 'users.github_id'})
             .where('repos.name', name)
     }
     

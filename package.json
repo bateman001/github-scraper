@@ -8,8 +8,11 @@
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
     "migrate": "npx knex migrate:latest",
-    "migrateback": "npx knex migrate:rollback",
-    "scrape": "node src/scrapeGitHub.js"
+    "migrate:back": "npx knex migrate:rollback",
+    "scrape": "node src/scrapeGitHub.js",
+    "getUser": "node src/command-lines/getUser.js",
+    "getUsersRepos": "node src/command-lines/getUserRepos.js",
+    "getRepo": "node src/command-lines/getRepo.js"
   },
   "keywords": [],
   "author": "",

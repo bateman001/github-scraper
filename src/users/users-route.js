@@ -37,7 +37,7 @@ userRouter
 userRouter
     .route('/:username')
     .get((req, res, next) => {
-        const { username } = req.params
+        const { username } = req.params        
         UserService.getUserWithUsername(username)
         .then(user => {
             if(!user){

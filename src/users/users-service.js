@@ -17,17 +17,19 @@ const UserService = {
         return db
         .select('*')
         .from('users')
-        .where(username)
+        .where('username', username)
     },
     getReposWithUsername(username){
         return db
         .from('users')
-        .select('users.username', 
-            'users.user_url', 
-            'repos.repo_url', 
-            'repos.name', 
-            'repos.public_access')
-        .join('repos', {'repos.user_id': 'users.id'})
+        .select('repos.name',
+            'repos.fullname',
+            'repos.description',
+            'repos.repo_url',
+            'repos.public_access',
+            'repos.fork',
+            'repos.language')
+        .join('repos', {'repos.user_id': 'users.github_id'})
         .where('users.username', username)
     }
 }

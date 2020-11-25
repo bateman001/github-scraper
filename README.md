@@ -14,9 +14,31 @@ Complete the following steps to use this project:
 5. Move the example Environment file to `.env` that will be ignored by git and read by the express server `mv example.env .env`
 6. Edit the contents of the `package.json` to use NEW-PROJECT-NAME instead of `"name": "github-scraper",`
 
-## Using this projects
+## Using this project
 
-Before you do anything, in your terminal run `npm run scrape`
+1. To populate the database, in your command line run `npm run scrape` 
+
+## API Endpoints
+
+### User Enpoints
+
+- `api/users/` 
+  - returns all users
+
+- `api/users/:username`
+  - returns specified user
+
+- `api/users/:username/repos`
+  - returns all of a specified users repos
+
+### Repository Endpoints
+
+- `api/repos`
+  - returns all the repositories
+
+- `api/repos/
+
+
 
 ## Scripts
 
@@ -26,8 +48,4 @@ Start nodemon for the application `npm run dev`
 
 Run the tests `npm test`
 
-
-## Deploying
-
-When your new project is ready for deployment, add a new Heroku application with `heroku create`. This will make a new git remote called "heroku" and you can then `npm run deploy` which will push to this remote's master branch.
 

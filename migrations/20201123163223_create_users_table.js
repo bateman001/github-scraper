@@ -21,6 +21,7 @@ exports.up = function(knex) {
         tbl.boolean('public_access')
         tbl.text('repo_url')
         tbl.text('description')
+        tbl.boolean('fork')
         tbl.text('language')
     })
 };
