@@ -1,7 +1,7 @@
 
 ## Description
 
-Welcome to GitHub Scraper. GitHub Scraper pulls user data and repo data from the GitHub API then stores it in an SQLite database. This project was meant to be used from __both__ Postman/Browser and the command line. I will provide endpoints below and describe how to run the command line prompts.
+Welcome to GitHub Scraper. GitHub Scraper pulls user data and repo data from the GitHub API then stores it in an SQLite database. This project was meant to be used from __both__ Postman/Browser and the command line on your local machine. I will provide descriptions of the endpoints and command line prompts below.
 
 ## Set up
 
