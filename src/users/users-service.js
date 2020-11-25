@@ -7,6 +7,7 @@ const UserService = {
         return db
         .insert(users)
         .into("users")
+        .returning('*')
     },
     getAllUsers(){
         return db

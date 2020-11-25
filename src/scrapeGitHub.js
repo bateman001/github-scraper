@@ -1,6 +1,3 @@
-const config = require('../knexfile')
-const knex = require('knex')
-const db = knex(config.development)
 const RepoService = require('../src/repos/repos-service')
 const fetch = require('node-fetch')
 const UserService = require('./users/users-service')
@@ -64,6 +61,7 @@ function compileRepos(url){
         })
         .catch()
 }
+
 scrape()
 
 module.exports = scrape

@@ -6,6 +6,7 @@ exports.up = function(knex) {
         tbl.text('avatar_url')
         tbl.text('user_url')
         tbl.integer('github_id').notNullable()
+        tbl.text('repo_api_url')
 
     })
     .createTable('repos', tbl => {

@@ -13,10 +13,15 @@ Complete the following steps to use this project:
 4. Install the node dependencies `npm install`
 5. Move the example Environment file to `.env` that will be ignored by git and read by the express server `mv example.env .env`
 6. Edit the contents of the `package.json` to use NEW-PROJECT-NAME instead of `"name": "github-scraper",`
+7. Populate the database, in your command line run `npm run scrape` 
 
-## Using this project
+## Scripts 
 
-1. To populate the database, in your command line run `npm run scrape` 
+Start the application `npm start`
+
+Start nodemon for the application `npm run dev`
+
+Run the tests `npm test`
 
 ## API Endpoints
 
@@ -36,16 +41,24 @@ Complete the following steps to use this project:
 - `api/repos`
   - returns all the repositories
 
-- `api/repos/
+- `api/repos/:repo_name`
+  - returns specific repository along with user info
 
 
 
-## Scripts
+## Command Line
 
-Start the application `npm start`
+- `npm run getUser *USERNAME*`
+  - returns the user and if user is not it database it fetches the user and all of users repositories from github api
 
-Start nodemon for the application `npm run dev`
+- `npm run getUsersRepos *USERNAME*`
+  - returns all repos associated with a username, if user is not in database will fetch user from github api
 
-Run the tests `npm test`
+- `npm run getRepo *REPO_NAME*`
+  - returns the repo and the user associated with the repo
+
+
+
+
 
 
