@@ -58,7 +58,10 @@ Run the tests `npm test`
   - returns the repo and the user associated with the repo
 
 
+### Important Links
 
+- [Repo](https://github.com/bateman001/github-scraper)
+- [Gist](https://gist.github.com/bateman001/eea2d261c2508746d28ab82008605a5c)
 
 
 
