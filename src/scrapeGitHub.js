@@ -17,15 +17,13 @@ function scrape(){
                             "username": user.login,
                             "avatar_url": user.avatar_url,
                             "user_url": user.html_url,
-                            "github_id": user.id
+                            "github_id": user.id,
+                            "repo_api_url": user.repos_url
                         }
                         compileRepos(user.repos_url) //gathering all repos associated with each user
                         newEntries.push(newUser)
                     })
-                    UserService.insertUsers(newEntries)
-                    .then(() => { 
-                        console.log('scraped')
-                    })
+                   return UserService.insertUsers(newEntries)
                 }
             })
             .catch()
@@ -56,7 +54,7 @@ function compileRepos(url){
                 usersRepos.push(newRepo)
             })
     
-            RepoService.insertRepos(usersRepos)
+           return RepoService.insertRepos(usersRepos)
         }
         })
         .catch()

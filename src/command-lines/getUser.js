@@ -1,6 +1,6 @@
-const UserService = require("../users/users-service");
+const UserService = require("../users/users-service")
 const fetch = require('node-fetch')
-const InsertUserAndRepos = require('../InsertUser');
+const InsertUserAndRepos = require('../InsertUser')
 
 function getUser(user){
 
@@ -19,7 +19,7 @@ function getUser(user){
         }
     })
 }
-const [_, __, user] = process.argv;
+const [_, __, user] = process.argv
 
 getUser(user)
 

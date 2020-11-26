@@ -1,5 +1,3 @@
-const UserService = require('./users/users-service')
-const RepoService = require('./repos/repos-service')
 const fetch = require('node-fetch')
 
 const config = require('../knexfile')
@@ -26,7 +24,6 @@ function insertUser(user){
                 return db.insert(newUser).into('users')
             }
         })
-        .catch()
 }
 
 function compileRepos(username){
@@ -59,14 +56,11 @@ function compileRepos(username){
             return db('repos').insert(userRepos)
             }
         })
-        .catch()
 }
 
 async function InsertUserAndRepos(username){
-    const user = await insertUser(username)
-    const repos = await compileRepos(username)
-
-    return repos
+    await insertUser(username)
+    return compileRepos(username)
 }
 
 module.exports = InsertUserAndRepos

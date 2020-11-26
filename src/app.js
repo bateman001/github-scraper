@@ -1,15 +1,3 @@
-// const { PORT } = require('./config')
-
-// app.use(express.json())
-
-// app.get('/', (req,res) => {
-    //     res.send("Hello, world!")
-    // })
-    
-    // app.listen(PORT, () => {
-        //   console.log(`Server listening at http://localhost:${PORT}`)
-        // })
-        
 const express = require('express')
 const app = express()
 require('dotenv').config()
@@ -32,7 +20,7 @@ app.use(helmet())
 app.use('/api/repos', repoRoute)
 app.use('/api/users', userRouter)
 app.get('/', (req, res) => {
-    res.send("Hello World")
+    res.send("Hello, world!")
 })
 app.use(function errorHandler(error, req, res, next) {
     let response
