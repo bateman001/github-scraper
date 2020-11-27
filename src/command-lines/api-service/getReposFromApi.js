@@ -11,7 +11,7 @@ async function compileRepos(arr) {
 function fetchRepos(url){   
     
     return fetch(url,{
-            headers: { auth: `token 06e02975344a92c7c68844bdd4ef5fa9c4191ee0`}
+            headers: { auth: `token ${process.env.AUTH_TOKEN}`}
         })
         .then(res => res.json())
         .then(body => {

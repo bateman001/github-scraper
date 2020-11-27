@@ -3,9 +3,10 @@ const getReposFromApi = require('./api-service/getReposFromApi')
 
 async function scrape(){
     console.log('scraping')
-    const urls = await getUserFromApi('https://api.github.com/users') 
-    console.log('inserting repos')
-    return getReposFromApi(urls)
+    console.log(process.env.AUTH_TOKEN)
+    // const urls = await getUserFromApi('https://api.github.com/users') 
+    // console.log('inserting repos')
+    // return getReposFromApi(urls)
 }
 
 scrape()
