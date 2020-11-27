@@ -1,10 +1,11 @@
 const fetch = require('node-fetch')
 const UserService = require('../../users/users-service')
+require('dotenv').config();
 
 function getUserFromApi(url){
         return fetch(url, 
             {
-                headers: { authentication: `token 06e02975344a92c7c68844bdd4ef5fa9c4191ee0`}
+                headers: { authentication: `bateman001:${process.env.AUTH_TOKEN}`}
             }) 
             .then(res => res.json())
             .then(body => {

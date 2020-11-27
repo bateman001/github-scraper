@@ -1,6 +1,4 @@
 const UserService = require("../users/users-service")
-// const fetch = require('node-fetch')
-// const InsertUserAndRepos = require('./InsertUser')
 const getUserFromApi = require("./api-service/getUserFromApi")
 const getReposFromApi = require('./api-service/getReposFromApi')
 

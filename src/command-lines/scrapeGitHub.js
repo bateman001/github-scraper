@@ -1,12 +1,12 @@
 const getUserFromApi = require('./api-service/getUserFromApi')
 const getReposFromApi = require('./api-service/getReposFromApi')
+require('dotenv').config();
 
 async function scrape(){
     console.log('scraping')
-    console.log(process.env.AUTH_TOKEN)
-    // const urls = await getUserFromApi('https://api.github.com/users') 
-    // console.log('inserting repos')
-    // return getReposFromApi(urls)
+    const urls = await getUserFromApi('https://api.github.com/users') 
+    console.log('inserting repos')
+    return getReposFromApi(urls)
 }
 
 scrape()
@@ -15,7 +15,7 @@ scrape()
     process.exit()
 })
 .catch(err=>{
-    console.error("Something failed:",err)
+    console.error("Something failed:", err)
     process.exit()
 })
 

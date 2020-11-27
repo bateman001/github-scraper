@@ -1,17 +1,20 @@
 const RepoService = require('../../repos/repos-service')
 const fetch = require('node-fetch')
+require('dotenv').config();
 
 async function compileRepos(arr) {
+    let repos = []
     for(let i = 0; i < arr.length; i++){
-        await fetchRepos(arr[i])
+        const repo = await fetchRepos(arr[i])
+        repos.push(repo)
     }
-    return
+    return RepoService.insertRepos(repos)
 }
 
 function fetchRepos(url){   
     
     return fetch(url,{
-            headers: { auth: `token ${process.env.AUTH_TOKEN}`}
+            headers: { authentication: `token ${process.env.AUTH_TOKEN}`}
         })
         .then(res => res.json())
         .then(body => {
@@ -32,7 +35,7 @@ function fetchRepos(url){
                 }
             })
             
-            return RepoService.insertRepos(userRepos)
+            return userRepos
             }
         })
 }
