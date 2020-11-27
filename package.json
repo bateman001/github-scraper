@@ -10,7 +10,7 @@
     "start": "node src/server.js",
     "migrate": "npx knex migrate:latest",
     "migrate:down": "npx knex migrate:rollback",
-    "scrape": "node src/scrapeGitHub.js",
+    "scrape": "node src/command-lines/scrapeGitHub.js",
     "getAllUsers": "node src/command-lines/getAllUsers.js",
     "getUser": "node src/command-lines/getUser.js",
     "getUsersRepos": "node src/command-lines/getUserRepos.js",

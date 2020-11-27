@@ -1,4 +1,4 @@
-const InsertUserAndRepos = require("../InsertUser");
+const InsertUserAndRepos = require("./InsertUser");
 const UserService = require("../users/users-service");
 
 async function getUserRepo(username){

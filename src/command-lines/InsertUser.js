@@ -1,11 +1,15 @@
 const fetch = require('node-fetch')
-
-const config = require('../knexfile')
+const config = require('../../knexfile')
 const knex = require('knex')
+const UserService = require('../users/users-service')
 const db = knex(config.development)
 
 function insertUser(user){
-    return fetch(`https://api.github.com/users/${user}`) //fetching large amounts of users
+    return fetch(`https://api.github.com/users/${user}`, {
+        headers: {
+            auth: `token ${process.env.AUTH_TOKEN}`
+        }
+    }) //fetching large amounts of users
         .then(res => res.json())
         .then(body => {
             if(body.message){
@@ -13,6 +17,7 @@ function insertUser(user){
                 process.exit()
             }
             else{
+                let url = body.repos_url
                 let newUser = {
                     "username": body.login,
                     "avatar_url": body.avatar_url,
@@ -21,14 +26,20 @@ function insertUser(user){
                     "repo_api_url": body.repos_url
                 }
 
-                return db.insert(newUser).into('users')
+                return UserService.insertUsers(newUser)
+                .then(() => {
+                    return url
+                })
             }
         })
 }
 
-function compileRepos(username){
-
-    return fetch(`https://api.github.com/users/${username}/repos`)
+function compileRepos(url){
+    return fetch(url,{
+        headers: {
+            auth: `token ${process.env.AUTH_TOKEN}`
+        }
+    })
         .then(res => res.json())
         .then(body => {
         if(body.message){
@@ -59,8 +70,8 @@ function compileRepos(username){
 }
 
 async function InsertUserAndRepos(username){
-    await insertUser(username)
-    return compileRepos(username)
+   const url = await insertUser(username)
+    return compileRepos(url)
 }
 
 module.exports = InsertUserAndRepos

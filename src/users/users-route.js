@@ -15,8 +15,14 @@ userRouter
         .catch(next)
     })
     .post(jsonParser, (req, res, next) => {
-        const {username, bio, location, user_url} = req.body
-        const newUsers = {username, bio, location, user_url}
+        const {
+            username,
+            avatar_url, 
+            user_url, 
+            github_id, 
+            repo_api_url
+        } = req.body
+        const newUsers = {username, avatar_url, github_id, user_url, repo_api_url}
         
         for(const[key, value] of Object.entries(newUsers)){
             if(value == null){

@@ -1,13 +1,10 @@
-const knex = require('knex')
-const config = require('../../knexfile')
-const db = knex(config.development)
+const db = require('../db-config')
 
 const UserService = {
     insertUsers(users){
         return db
         .insert(users)
         .into("users")
-        .returning('*')
     },
     getAllUsers(){
         return db
