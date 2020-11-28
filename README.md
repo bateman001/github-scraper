@@ -7,21 +7,19 @@ Welcome to GitHub Scraper. GitHub Scraper pulls user data and repo data from the
 
 Complete the following steps to use this project:
 
+*if not cloning from github start at step 3*
+
 1. Clone this repository to your local machine `git clone URL PROJECTS-NAME`
 2. `cd` into the cloned repository
 3. Make a fresh start of the git history for this project with `rm -rf .git && git init`
-4. Install the node dependencies `npm install`
-5. Move the example Environment file to `.env` that will be ignored by git and read by the express server `mv example.env .env`
-6. Edit the contents of the `package.json` to use NEW-PROJECT-NAME instead of `"name": "github-scraper",`
+4. Copy the AUTH_TOKEN I sent you and paste it inbetween the the double quotes on line 7 of setup.sh
+5. Now set up your project with `npm run setup`
 7. Populate the database, in your command line run `npm run scrape` 
+ 
 
-## Scripts 
 
-Start the application `npm start`
 
-Start nodemon for the application `npm run dev`
 
-Run the tests `npm test`
 
 ## API Endpoints
 
@@ -45,8 +43,28 @@ Run the tests `npm test`
   - returns specific repository along with user info
 
 
+## Command Line Scripts
 
-## Command Line
+- `npm start`
+  - Start the application
+
+- `npm run dev`
+  - Start nodemon for the application
+
+- `npm test`
+  - Run the tests 
+
+- `npm run migrate:down`
+  - migrates the database down to 0 *can use to clear data from database*
+
+- `npm run migrate`
+  - migrates the database to latest verion
+
+- `npm run scrape`
+  - scrapes user and repository information from the github api
+
+- `npm run getAllUsers`
+  - returns all the users in the database
 
 - `npm run getUser *USERNAME*`
   - returns the user and if user is not it database it fetches the user and all of users repositories from github api

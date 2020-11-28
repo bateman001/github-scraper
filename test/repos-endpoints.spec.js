@@ -4,7 +4,7 @@ const app = require('../src/app')
 const supertest = require('supertest')
 const { expect } = require('chai')
 
-describe('User Endpoints', () => {
+describe('Repo Endpoints', () => {
     before(async () => {
         await db.migrate.latest()
     })
