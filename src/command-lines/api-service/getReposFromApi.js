@@ -6,15 +6,21 @@ async function compileRepos(arr) {
     let repos = []
     for(let i = 0; i < arr.length; i++){
         const repo = await fetchRepos(arr[i])
-        repos.push(repo)
+        repos = repos.concat(repo)
     }
-    return RepoService.insertRepos(repos)
+    if(repos.length > 100){
+        let fourth = Math.round(repos.length)
+        //split array into 4ths
+
+        
+    }
+//    return RepoService.insertRepos(repos)
 }
 
 function fetchRepos(url){   
     
     return fetch(url,{
-            headers: { authentication: `token ${process.env.AUTH_TOKEN}`}
+            headers: { authorization: `token ${process.env.AUTH_TOKEN}`}
         })
         .then(res => res.json())
         .then(body => {

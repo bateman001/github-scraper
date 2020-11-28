@@ -14,18 +14,18 @@ repoRoute
         .catch(next)
     })
     .post(jsonParser, (req, res, next) => {
-        const {name, repo_url, public_access, user_id} = req.body
-        const newRepo = {name, repo_url, public_access, user_id}
+        const {name, repo_url, public_access, user_id, fork, fullname, description, language} = req.body
+        const newRepo = {name, repo_url, public_access, user_id, fork, fullname, description, language}
         for(const[key, value] of Object.entries(newRepo)){
             if(value == null){
-                res.status(400).send({
+                return res.status(400).send({
                     error: `Missing ${key} in request params`
                 })
             }
         }
         RepoService.insertRepos(newRepo)
         .then(repos => {
-            res.status(201).json(repos)
+            return res.status(201).json(repos)
         })
         .catch(next)
 

@@ -5,7 +5,7 @@ require('dotenv').config();
 function getUserFromApi(url){
         return fetch(url, 
             {
-                headers: { authentication: `bateman001:${process.env.AUTH_TOKEN}`}
+                headers: { authorization: `token ${process.env.AUTH_TOKEN}`}
             }) 
             .then(res => res.json())
             .then(body => {

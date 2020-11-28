@@ -1,17 +1,16 @@
-const supertest = require('supertest')
 const db = require('../src/db-config')
 const helpers = require('./test-helpers')
 const app = require('../src/app')
-const { expect } = require('chai')
 
-describe('User Endpoint Functions', () => {
+describe('User Endpoints', () => {
     before(async () => {
         await db.migrate.latest()
     })
 
-    const { users } = helpers.makeFixtures()
+    const { users, repos } = helpers.makeFixtures()
     const testUser = users[0]
-    
+    const testRepo = repos[0]
+
     after('disconnect from db', () => db.migrate.rollback())
 
     before('cleanup', () => helpers.cleanTables(db))
@@ -92,6 +91,34 @@ describe('User Endpoint Functions', () => {
                 return supertest(app)
                 .get(`/api/users/user`)
                 .expect(201, [])
+            })
+        })
+    })
+
+    describe('api/users/:username/repos', () => {
+        context('GET api/users/:username/repos', () => {
+            beforeEach('insert users and repos', async() => {
+                await helpers.seedUsersTable(db, testUser)
+                await helpers.seedReposTable(db, testRepo)
+            })
+            it('responds with a 201 and repo, when asking for a specific user', () => {
+                return supertest(app)
+                    .get(`/api/users/${testUser.username}/repos`)
+                    .expect(201)
+                    .expect(res => {
+                        expect(res.body).to.be.a('array')
+                        expect(res.body[0].name).to.be.eql(testRepo.name)
+                        expect(res.body[0].fullname).to.be.eql(testRepo.fullname)
+                        expect(res.body[0].language).to.be.eql(testRepo.language)
+                        expect(res.body[0].description).to.be.eql(testRepo.description)
+                        expect(res.body[0].repo_url).to.be.eql(testRepo.repo_url)
+                    })
+            })
+
+            it('responds with a 201 and empty array when asking for user not in db', () => {
+                return supertest(app)
+                    .get(`/api/users/someone/repos`)
+                    .expect(201, [])
             })
         })
     })

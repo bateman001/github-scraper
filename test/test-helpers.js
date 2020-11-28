@@ -30,7 +30,6 @@ const Helpers = {
     makeReposArray(){
        return[ 
         {
-            id: 1, 
             user_id: '123', 
             name: 'repo1', 
             fullname: 'user1/repo1', 
@@ -41,7 +40,6 @@ const Helpers = {
             language: 'HTML'
         },
         {
-            id: 2, 
             user_id: '123', 
             name: 'repo2', 
             fullname: 'user1/repo2', 
@@ -52,7 +50,6 @@ const Helpers = {
             language: 'Javascript'
         },
         {
-            id: 3, 
             user_id: '234', 
             name: 'repo3', 
             fullname: 'user2/repo3', 
@@ -62,7 +59,6 @@ const Helpers = {
             fork: true, 
             language: 'HTML'},
         {
-            id: 4, 
             user_id: '345', 
             name: 'repo4', 
             fullname: 'user3/repo4', 
@@ -76,8 +72,9 @@ const Helpers = {
     },
     cleanTables(db){
         return db.raw(
-            `DELETE FROM users`
-          )
+            `DELETE FROM users;
+            DELETE FROM repos;
+            `)
     },
     makeFixtures(){
         const users = this.makeUsersArray()
@@ -87,7 +84,11 @@ const Helpers = {
     },
     seedUsersTable(db, users){
         return db.insert(users).into('users')
+    },
+    seedReposTable(db, repos){
+        return db.insert(repos).into('repos')
     }
+    
 }
 
 module.exports = Helpers
