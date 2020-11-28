@@ -2,6 +2,10 @@ const RepoService = require('../repos/repos-service')
 const colors = require('colors')
 
 function getRepo(repo){
+    if(!repo){
+        console.log('\nplease enter a repo name\n'.red)
+        process.exit()
+    }
     RepoService.getRepoByName(repo)
     .then(res => {
         if(res.length === 0){
@@ -12,6 +16,10 @@ function getRepo(repo){
         console.log(res)
         console.log('')
         console.log('')
+        process.exit()
+    })
+    .catch(err=>{
+        console.error("Something failed:".red, err)
         process.exit()
     })
 }

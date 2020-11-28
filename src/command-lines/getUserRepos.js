@@ -2,7 +2,6 @@ const UserService = require("../users/users-service");
 const getUserFromApi = require('./api-service/getUserFromApi')
 const getReposFromApi = require('./api-service/getReposFromApi')
 const colors = require('colors');
-const RepoService = require("../repos/repos-service");
 
 async function getUserRepo(username){
     if(!username){
@@ -35,7 +34,7 @@ getUserRepo(user)
     process.exit()
 })
 .catch(err=>{
-    console.error("Something failed:", err)
+    console.error("Something failed:".red, err)
     process.exit()
 })
 module.exports = getUserRepo
