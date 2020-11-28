@@ -36,7 +36,7 @@ Complete the following steps to use this project:
 - `npm run migrate`
   - migrates the database to latest verion
 
-### To functionally use this projet
+### To functionally use this project
 
 - `npm run scrape`
   - scrapes user and repository information from the github api
@@ -44,13 +44,13 @@ Complete the following steps to use this project:
 - `npm run getAllUsers`
   - returns all the users in the database
 
-- `npm run getUser __USERNAME__`
+- `npm run getUser USERNAME`
   - returns the user and if user is not it database it fetches the user and all of users repositories from github api
 
-- `npm run getUsersRepos __USERNAME__`
+- `npm run getUsersRepos USERNAME`
   - returns all repos associated with a username, if user is not in database will fetch user from github api
 
-- `npm run getRepo __REPO_NAME__`
+- `npm run getRepo REPONAME`
   - returns the repo and the user associated with the repo
 
 
