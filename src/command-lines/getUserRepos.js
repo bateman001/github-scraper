@@ -1,26 +1,28 @@
 const UserService = require("../users/users-service");
 const getUserFromApi = require('./api-service/getUserFromApi')
 const getReposFromApi = require('./api-service/getReposFromApi')
-const colors = require('colors')
+const colors = require('colors');
+const RepoService = require("../repos/repos-service");
 
 async function getUserRepo(username){
     if(!username){
         console.log('\nplease enter a username\n'.red)
         process.exit()
     }
-    const user = await UserService.getReposWithUsername(username)
+    const user = await UserService.getUserWithUsername(username)
     
     if(user.length === 0){
-        console.log('\nuser is not in the database, fetching user'.blue)
+        console.log(`\n${username} is not in the database, fetching user`.blue)
 
         const url = await getUserFromApi(`https://api.github.com/users/${username}`)
 
-        console.log('\nscraping users repos\n'.blue)
+        console.log(`\nscraping ${username}'s repos\n`.blue)
 
         await getReposFromApi(url)
         return getUserRepo(username)
     }else{
-       return user 
+        const repos = await UserService.getReposWithUsername(username)
+        return repos 
     }
 }
 

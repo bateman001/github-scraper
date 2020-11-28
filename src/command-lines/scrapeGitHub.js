@@ -4,7 +4,7 @@ const colors = require('colors')
 
 async function scrape(){
     console.log('\nscraping users'.blue)
-    const urls = await getUserFromApi('https://api.github.com/users?per_page=10') 
+    const urls = await getUserFromApi('https://api.github.com/users') 
     console.log('\nscraping users repos'.blue)
     return getReposFromApi(urls)
 }
@@ -16,7 +16,7 @@ scrape()
     process.exit()
 })
 .catch(err=>{
-    console.error('\nSomething failed'.red, err)
+    console.error('\nSomething failed\n'.red, err)
     process.exit()
 })
 

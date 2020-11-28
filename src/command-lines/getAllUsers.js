@@ -1,5 +1,6 @@
 const UserService = require("../users/users-service");
 const colors = require('colors')
+
 function getAllUsers(){
     UserService.getAllUsers()
     .then(res => {

@@ -1,11 +1,14 @@
 const RepoService = require('../../repos/repos-service')
 const fetch = require('node-fetch')
 require('dotenv').config();
+const color = require('colors')
 
 async function compileRepos(arr) {
     for(let i = 0; i < arr.length; i++){
         const repo = await fetchRepos(arr[i])
-        await RepoService.insertRepos(repo)
+        if(repo.length > 0){
+            await RepoService.insertRepos(repo)
+        }
     }
     return
 }
