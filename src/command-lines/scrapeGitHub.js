@@ -3,15 +3,15 @@ const getReposFromApi = require('./api-service/getReposFromApi')
 require('dotenv').config();
 
 async function scrape(){
-    console.log('scraping')
-    const urls = await getUserFromApi('https://api.github.com/users') 
-    console.log('inserting repos')
+    console.log('scraping users')
+    const urls = await getUserFromApi('https://api.github.com/users?per_page=10') 
+    console.log('scraping users repos')
     return getReposFromApi(urls)
 }
 
 scrape()
 .then(() => {
-    console.log('finished')
+    console.log('Finished! Thanks for waiting!')
     process.exit()
 })
 .catch(err=>{
