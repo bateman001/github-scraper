@@ -17,8 +17,41 @@ Complete the following steps to use this project:
 7. Populate the database, in your command line run `npm run scrape` 
  
 
+# Command Line Scripts
 
+### To get the project running
 
+- `npm start`
+  - Start the application
+
+- `npm run dev`
+  - Start nodemon for the application
+
+- `npm test`
+  - Run the tests 
+
+- `npm run migrate:down`
+  - migrates the database down to 0 *can use to clear data from database*
+
+- `npm run migrate`
+  - migrates the database to latest verion
+
+### To functionally use this projet
+
+- `npm run scrape`
+  - scrapes user and repository information from the github api
+
+- `npm run getAllUsers`
+  - returns all the users in the database
+
+- `npm run getUser __USERNAME__`
+  - returns the user and if user is not it database it fetches the user and all of users repositories from github api
+
+- `npm run getUsersRepos __USERNAME__`
+  - returns all repos associated with a username, if user is not in database will fetch user from github api
+
+- `npm run getRepo __REPO_NAME__`
+  - returns the repo and the user associated with the repo
 
 
 ## API Endpoints
@@ -41,39 +74,6 @@ Complete the following steps to use this project:
 
 - `api/repos/:repo_name`
   - returns specific repository along with user info
-
-
-## Command Line Scripts
-
-- `npm start`
-  - Start the application
-
-- `npm run dev`
-  - Start nodemon for the application
-
-- `npm test`
-  - Run the tests 
-
-- `npm run migrate:down`
-  - migrates the database down to 0 *can use to clear data from database*
-
-- `npm run migrate`
-  - migrates the database to latest verion
-
-- `npm run scrape`
-  - scrapes user and repository information from the github api
-
-- `npm run getAllUsers`
-  - returns all the users in the database
-
-- `npm run getUser *USERNAME*`
-  - returns the user and if user is not it database it fetches the user and all of users repositories from github api
-
-- `npm run getUsersRepos *USERNAME*`
-  - returns all repos associated with a username, if user is not in database will fetch user from github api
-
-- `npm run getRepo *REPO_NAME*`
-  - returns the repo and the user associated with the repo
 
 
 ### Important Links
