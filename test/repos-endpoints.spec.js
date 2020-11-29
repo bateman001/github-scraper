@@ -12,7 +12,7 @@ describe('Repo Endpoints', () => {
     const { users, repos } = helpers.makeFixtures()
     const testRepo = repos[0]
 
-    after('disconnect from db', () => db.migrate.rollback())
+    after('disconnect from db', async () => await db.migrate.rollback())
 
     before('cleanup', async () =>  await helpers.cleanTables(db))
 

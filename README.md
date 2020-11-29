@@ -7,7 +7,7 @@ Welcome to GitHub Scraper. GitHub Scraper pulls user data and repo data from the
 
 Complete the following steps to use this project:
 
-*if not cloning from github start at step 3*
+*if not cloning from github start at step 2*
 
 1. Clone this repository to your local machine `git clone URL PROJECTS-NAME`
 2. `cd` into the cloned repository

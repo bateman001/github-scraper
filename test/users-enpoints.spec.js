@@ -11,7 +11,9 @@ describe('User Endpoints', () => {
     const testUser = users[0]
     const testRepo = repos[0]
 
-    after('disconnect from db', () => db.migrate.rollback())
+    after('disconnect from db', async () => {
+       await db.migrate.rollback()
+    })
 
     before('cleanup', () => helpers.cleanTables(db))
 

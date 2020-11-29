@@ -4,6 +4,7 @@ const getReposFromApi = require('./api-service/getReposFromApi')
 const colors = require('colors')
 
 async function getUser(username){
+
     if(!username){
         console.log('please enter a username \n'.red)
         process.exit()
