@@ -6,7 +6,7 @@ npm run migrate:down
 npm run migrate
 touch .env
 echo 'AUTH_TOKEN=""' >> .env
-echo 'NODE_ENV=developement' >> .env
+echo 'NODE_ENV=development' >> .env
 echo finsihed
 
 
