@@ -15,10 +15,14 @@ const [_, __, user, repo] = process.argv
 
 SpecificRepo(user, repo)
 .then((res) => {
-    console.log(res)
-    console.log('\nFound it!\n'.green)
+    if(res.length === 0){
+        console.log(res)
+        console.log('\nlooks like there is nothing here\n'.yellow)
+    }else{
+        console.log(res)
+        console.log('\nFound it!\n'.green)
+    }
     process.exit()
-
 })
 .catch(err=>{
     console.error("Something failed:".red, err)
