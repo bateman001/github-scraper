@@ -82,6 +82,23 @@ Complete the following steps to use this project:
   - returns specific repository along with user info
 
 
+## Technology 
+
+- Node
+
+- Express.js
+
+- JavaScript
+
+- SQLite3
+
+- knex
+
+- mocha 
+
+- chai
+
+*check out my package.json for a better look*
 
 ### Important Links
 
