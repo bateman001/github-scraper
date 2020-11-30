@@ -29,7 +29,7 @@ getUser(user).then(res => {
     process.exit()
 })
 .catch(err=>{
-    console.error("Something failed:", err)
+    console.error("Something failed:".red, err)
     process.exit()
 })
 

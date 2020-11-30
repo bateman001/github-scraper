@@ -17,7 +17,7 @@ app.use(cors())
 app.use(morgan(morganOption))
 app.use(helmet())
 
-app.use('/api/repos', repoRoute)
+app.use('/api/repos', repoRoute) 
 app.use('/api/users', userRouter)
 app.get('/', (req, res) => {
     res.send("Hello, world!")

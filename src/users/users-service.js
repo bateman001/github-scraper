@@ -1,4 +1,5 @@
 const db = require('../db-config')
+const RepoService = require('../repos/repos-service')
 
 const UserService = {
     insertUsers(users){
@@ -29,6 +30,22 @@ const UserService = {
             'repos.language')
         .join('repos', {'repos.user_id': 'users.github_id'})
         .where('users.username', username)
+    },
+    getSpecificUsersRepo(username, reponame){
+        return db
+            .select('repos.name',
+                'repos.fullname',
+                'repos.repo_url',
+                'repos.user_id',
+                'repos.public_access',
+                'repos.fork',
+                'repos.description',
+                'repos.language',
+                )
+            .from('repos')
+            .where('repos.name', reponame)
+            .join('users', {'users.github_id': 'repos.user_id'})
+            .where('users.username', username)
     }
 }
 

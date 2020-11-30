@@ -4,6 +4,7 @@ const RepoService = require('./repos-service')
 const repoRoute = express.Router()
 const jsonParser = express.json()
 
+//returns all repos
 repoRoute
     .route('/') //get all repos
     .get((req, res, next) => {
@@ -31,6 +32,7 @@ repoRoute
 
     })
 
+//returns all repos with specific name
 repoRoute
     .route('/:repo_name') //get repo with it's name
     .get((req, res, next) => {
@@ -47,5 +49,6 @@ repoRoute
         })
         .catch(next)
     })
+
 
 module.exports = repoRoute

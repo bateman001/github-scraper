@@ -12,8 +12,8 @@ Complete the following steps to use this project:
 1. Clone this repository to your local machine `git clone URL PROJECTS-NAME`
 2. `cd` into repository
 3. Make a fresh start of the git history for this project with `rm -rf .git && git init`
-4. Copy the AUTH_TOKEN I sent you and paste it inbetween the the double quotes on line 7 of setup.sh
-5. Now set up your project with `npm run setup`
+4. Copy the AUTH_TOKEN I sent you and paste it inbetween the the double quotes on line 8 of setup.sh
+5. Set up your project with `npm run setup`
 7. Populate the database, in your command line run `npm run scrape` 
  
 
@@ -53,27 +53,34 @@ Complete the following steps to use this project:
 - `npm run getRepo REPONAME`
   - returns the repo and the user associated with the repo
 
+- `npm run getSpecificRepo USERNAME REPONAME`
+  - returns the repo and the user associated with the repo
+
 
 ## API Endpoints
 
 ### User Enpoints
 
-- `api/users/` 
+- `/api/users/` 
   - returns all users
 
-- `api/users/:username`
+- `/api/users/:username`
   - returns specified user
 
-- `api/users/:username/repos`
+- `/api/users/:username/repos`
   - returns all of a specified users repos
+
+- `/api/users/:username/repos/:repo`
+  - returns a users specific repo
 
 ### Repository Endpoints
 
-- `api/repos`
+- `/api/repos`
   - returns all the repositories
 
-- `api/repos/:repo_name`
+- `/api/repos/:repo_name`
   - returns specific repository along with user info
+
 
 
 ### Important Links

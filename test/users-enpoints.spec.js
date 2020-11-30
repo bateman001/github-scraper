@@ -1,6 +1,8 @@
 const db = require('../src/db-config')
 const helpers = require('./test-helpers')
 const app = require('../src/app')
+const supertest = require('supertest')
+const { expect } = require('chai')
 
 describe('User Endpoints', () => {
     before(async () => {
@@ -89,10 +91,12 @@ describe('User Endpoints', () => {
                     })
             })
 
-            it('responds with 201 and empty array when user doesnt exist', () => {
+            it('responds with 404 and error message when user doesnt exist', () => {
                 return supertest(app)
                 .get(`/api/users/user`)
-                .expect(201, [])
+                .expect(404,{
+                    error: `Username user does not exist`
+                })
             })
         })
     })
@@ -120,6 +124,45 @@ describe('User Endpoints', () => {
             it('responds with a 201 and empty array when asking for user not in db', () => {
                 return supertest(app)
                     .get(`/api/users/someone/repos`)
+                    .expect(201, [])
+            })
+        })
+    })
+
+    describe('/api/users/:username/repos/:reponame', () => {
+        beforeEach('insert users', async () => {
+            await helpers.seedUsersTable(db, users)
+            await helpers.seedReposTable(db, repos)
+        })
+
+        context('given there are users repos in the database', () => {
+
+            it('will return with a 201 and the users repo', () => {
+                return supertest(app)
+                    .get(`/api/users/${testUser.username}/repos/${testRepo.name}`)
+                    .expect(201)
+                    .expect(res => {
+                        expect(res.body).to.be.a('array')
+                        expect(res.body[0]).to.be.a('object')
+                        expect(res.body[0].name).to.eql(testRepo.name)
+                        expect(res.body[0].repo_url).to.eql(testRepo.repo_url)
+                        expect(res.body[0].fullname).to.eql(testRepo.fullname)
+                        expect(res.body[0].description).to.eql(testRepo.description)
+                    })
+            })
+
+        })
+   
+        context('given there are no matching repos', () => {
+            it('will repsond with a 201 and empty array', () => {
+                return supertest(app)
+                    .get(`/api/users/${testUser.username}/repos/randomrepos`)
+                    .expect(201, [])
+            })
+            
+            it('will respond with 201 and empty array when both name and repo arent in db', () => {
+                return supertest(app)
+                    .get('/api/users/asfsfas/repos/asfasf')
                     .expect(201, [])
             })
         })

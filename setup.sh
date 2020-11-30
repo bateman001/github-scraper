@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo setting up your project :)
+echo setting up your environment 
 npm install
 npm run migrate:down
 npm run migrate

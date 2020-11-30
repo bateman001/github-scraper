@@ -4,6 +4,8 @@ const getReposFromApi = require('./api-service/getReposFromApi')
 const colors = require('colors');
 
 async function getUserRepo(username){
+    let repos
+
     if(!username){
         console.log('\nplease enter a username\n'.red)
         process.exit()
@@ -12,15 +14,16 @@ async function getUserRepo(username){
     
     if(user.length === 0){
         console.log(`\n${username} is not in the database, fetching user`.blue)
-
         const url = await getUserFromApi(`https://api.github.com/users/${username}`)
 
         console.log(`\nscraping ${username}'s repos\n`.blue)
-
         await getReposFromApi(url)
-        return getUserRepo(username)
+
+        repos = await UserService.getReposWithUsername(username)  
+        return repos
+        
     }else{
-        const repos = await UserService.getReposWithUsername(username)
+        repos = await UserService.getReposWithUsername(username)
         return repos 
     }
 }

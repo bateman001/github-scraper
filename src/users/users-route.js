@@ -24,6 +24,7 @@ userRouter
         } = req.body
         const newUsers = {username, avatar_url, github_id, user_url, repo_api_url}
         
+        //for every value in newUsers, if one is missing send a 400 error
         for(const[key, value] of Object.entries(newUsers)){
             if(value == null){
                 return res.status(400).json({
@@ -39,15 +40,15 @@ userRouter
         .catch(next)
     })
 
-//returns all users
+//returns specific user
 userRouter
     .route('/:username')
     .get((req, res, next) => {
         const { username } = req.params        
         UserService.getUserWithUsername(username)
         .then(user => {
-            if(!user){
-                res.status(404).send({
+            if(user.length === 0){
+                return res.status(404).send({
                     error: `Username ${username} does not exist`
                 })
             }
@@ -65,7 +66,7 @@ userRouter
         UserService.getReposWithUsername(username)
         .then(repos => {
             if(!repos){
-                res.status(404).send({
+                return res.status(404).send({
                     error: `Username ${username} does not exit`
                 })
             }
@@ -75,4 +76,22 @@ userRouter
         .catch(next)
     })
 
+//returns specific users repo
+userRouter
+    .route('/:username/repos/:reponame')
+    .get((req, res, next) => {
+        const {username, reponame} = req.params
+
+        UserService.getSpecificUsersRepo(username, reponame)
+        .then(repo => {
+            if(!repo){
+               return res.status(404).send({
+                    error: `User, ${username}, or the repo, ${reponame}, does not exist`
+                })
+            }
+            res.status(201).json(repo)
+            next()
+        })
+        .catch(next)
+    })
 module.exports = userRouter

@@ -26,8 +26,7 @@ const RepoService = {
                 )
             .join('users', {'repos.user_id': 'users.github_id'})
             .where('repos.name', name)
-    }
-    
+    },
 }
 
 module.exports = RepoService
