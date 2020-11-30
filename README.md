@@ -12,9 +12,9 @@ Complete the following steps to use this project:
 1. Clone this repository to your local machine `git clone URL PROJECTS-NAME`
 2. `cd` into repository
 3. Make a fresh start of the git history for this project with `rm -rf .git && git init`
-4. Copy the AUTH_TOKEN I sent you and paste it inbetween the the double quotes on line 8 of setup.sh
+4. Copy the AUTH_TOKEN I sent you, or create your own GitHub API token and paste it inbetween the the double quotes on line 8 of setup.sh
 5. Set up your project with `npm run setup`
-7. Populate the database, in your command line run `npm run scrape` 
+7. Populate the database with `npm run scrape` 
  
 
 # Command Line Scripts
